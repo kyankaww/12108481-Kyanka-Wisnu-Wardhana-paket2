@@ -17,10 +17,7 @@ use App\Http\Controllers\SaleController;
 |
 */
 
-Route::get('/sale', [SaleController::class, 'index']);
-Route::post('/sale/store', [SaleController::class, 'store']);
-Route::get('/sale/detail/{id}', [SaleController::class, 'detail']);
-Route::get('/invoice/{id}', [SaleController::class, 'invoice']);
+
 
 Route::middleware(['isLogin', 'cekRole:admin'])->group(function(){
     Route::get('/user', [UserController::class, 'index']);
@@ -35,7 +32,10 @@ Route::middleware(['isLogin', 'cekRole:admin'])->group(function(){
 });
 
 Route::middleware(['isLogin', 'cekRole:employee'])->group(function(){
-
+    Route::get('/sale', [SaleController::class, 'index']);
+    Route::post('/sale/store', [SaleController::class, 'store']);
+    Route::get('/sale/detail/{id}', [SaleController::class, 'detail']);
+    Route::get('/invoice/{id}', [SaleController::class, 'invoice']);
 });
 
 Route::middleware(['isGuest'])->group(function(){
